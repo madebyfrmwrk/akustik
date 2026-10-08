@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: read
-  # Lets npm sign the provenance statement for this build.
+  # Lets npm trust this run in place of a token and sign its provenance.
   id-token: write
 
 jobs:
@@ -24,5 +24,3 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm build
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
