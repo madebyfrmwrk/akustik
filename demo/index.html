@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>akustik</title>
+    <style>
+      body {
+        display: grid;
+        place-items: center;
+        gap: 1.5rem;
+        min-height: 100vh;
+        margin: 0;
+        padding: 2.5rem 1rem;
+        box-sizing: border-box;
+        font: 14px/1.4 system-ui, sans-serif;
+      }
+      h1 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+      #board {
+        display: grid;
+        grid-template-columns: auto repeat(3, minmax(0, 1fr));
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .theme {
+        font-weight: 500;
+        text-align: center;
+      }
+      .label {
+        padding-right: 0.5rem;
+        opacity: 0.6;
+      }
+      button {
+        padding: 0.4rem 1rem;
+        font: inherit;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>akustik</h1>
+    <div id="board"></div>
+    <script type="module">
+      import { play } from "../dist/index.js";
+
+      const sounds = [
+        "tap",
+        "tick",
+        "select",
+        "deselect",
+        "toggle-on",
+        "toggle-off",
+        "swipe-forward",
+        "swipe-back",
+        "open",
+        "close",
+        "grab",
+        "drop",
+        "disabled",
+        "copy",
+        "add",
+        "remove",
+        "delete",
+        "undo",
+        "redo",
+        "send",
+        "receive",
+        "success",
+        "failure",
+        "complete",
+        "warning",
+        "error",
+        "join",
+        "leave",
+        "notification",
+      ];
+      const themes = ["glass", "string", "wood"];
+      const title = (name) => name[0].toUpperCase() + name.slice(1).replace("-", " ");
+      const span = (text, className = "") => Object.assign(document.createElement("span"), { textContent: text, className });
+
+      // Every sound in every theme: a column is one theme's set.
+      const board = document.getElementById("board");
+      board.append(span(""), ...themes.map((theme) => span(title(theme), "theme")));
+      for (const sound of sounds) {
+        board.append(span(title(sound), "label"));
+        for (const theme of themes) {
+          const button = Object.assign(document.createElement("button"), { type: "button", textContent: "Play" });
+          button.dataset.sound = sound;
+          button.dataset.theme = theme;
+          button.addEventListener("click", () => play(sound, theme));
+          board.append(button);
+        }
+      }
+    </script>
+  </body>
+</html>
