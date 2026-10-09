@@ -47,6 +47,8 @@ export type Theme = "glass" | "string" | "wood";
 const C2 = 36;
 const C3 = 48;
 const Db3 = 49;
+const Eb3 = 51;
+const G3 = 55;
 const C4 = 60;
 const Eb4 = 63;
 const E4 = 64;
@@ -76,18 +78,18 @@ const CUES: Record<Sound, Cue> = {
   tap: { notes: [C5], step: 0, length: 0.05, gain: 0.15, sub: 0.1, cutoff: 6000, echo: false },
   // Shorter and quieter still, with no sub, as a slider can fire it many times a second.
   tick: { notes: [G5], step: 0, length: 0.03, gain: 0.1, sub: 0, cutoff: 6000, echo: false },
-  // One light note for picking an item, and a lower, darker one for letting it go.
+  // One light note for picking an item, and a much lower, darker one for letting it go.
   select: { notes: [E5], step: 0, length: 0.08, gain: 0.15, sub: 0.1, cutoff: 6000, echo: false },
-  deselect: { notes: [C5], step: 0, length: 0.08, gain: 0.15, sub: 0.1, cutoff: 3000, echo: false },
-  // A quick fifth up for on, and its mirror for off.
+  deselect: { notes: [C4], step: 0, length: 0.08, gain: 0.17, sub: 0.1, cutoff: 3000, echo: false },
+  // A quick fifth up for on, and its mirror an octave lower for off.
   "toggle-on": { notes: [C4, G4], step: 0.04, length: 0.08, gain: 0.15, sub: 0.15, cutoff: 6000, echo: false },
-  "toggle-off": { notes: [G4, C4], step: 0.04, length: 0.08, gain: 0.15, sub: 0.15, cutoff: 3000, echo: false },
+  "toggle-off": { notes: [G3, C3], step: 0.04, length: 0.08, gain: 0.21, sub: 0.15, cutoff: 3000, echo: false },
   // A soft run up the scale, felt as motion rather than heard as a melody, and back down for back.
   "swipe-forward": { notes: [G4, A4, C5, D5], step: 0.025, length: 0.1, gain: 0.1, sub: 0.1, cutoff: 4000, echo: false },
   "swipe-back": { notes: [D5, C5, A4, G4], step: 0.025, length: 0.1, gain: 0.1, sub: 0.1, cutoff: 4000, echo: false },
-  // Octaves spreading open for a sheet or menu, and folding shut for its close.
+  // Octaves spreading open for a sheet or menu, and folding shut an octave lower for its close.
   open: { notes: [C4, G4, C5], step: 0.04, length: 0.2, gain: 0.16, sub: 0.3, cutoff: 5000, echo: false },
-  close: { notes: [C5, G4, C4], step: 0.04, length: 0.2, gain: 0.16, sub: 0.3, cutoff: 3000, echo: false },
+  close: { notes: [C4, G3, C3], step: 0.04, length: 0.2, gain: 0.21, sub: 0.3, cutoff: 3000, echo: false },
   // A step up that hangs unresolved on D while dragging, and a step back that lands home with weight.
   grab: { notes: [C5, D5], step: 0.04, length: 0.1, gain: 0.15, sub: 0.1, cutoff: 6000, echo: false },
   drop: { notes: [D5, C5], step: 0.04, length: 0.15, gain: 0.15, sub: 0.4, cutoff: 6000, echo: false },
@@ -95,9 +97,9 @@ const CUES: Record<Sound, Cue> = {
   disabled: { notes: [C3], step: 0, length: 0.08, gain: 0.25, sub: 0.3, cutoff: 600, echo: false },
   // A quick step up a fourth.
   copy: { notes: [G4, C5], step: 0.05, length: 0.15, gain: 0.15, sub: 0.2, cutoff: 6000, echo: false },
-  // A major third up, and the same third falling and darker: final, but not a failure.
+  // A major third up, and the same third falling an octave lower and darker: final, but not a failure.
   add: { notes: [C5, E5], step: 0.05, length: 0.2, gain: 0.15, sub: 0.2, cutoff: 6000, echo: false },
-  remove: { notes: [E5, C5], step: 0.05, length: 0.2, gain: 0.15, sub: 0.2, cutoff: 3000, echo: false },
+  remove: { notes: [E4, C4], step: 0.05, length: 0.2, gain: 0.17, sub: 0.2, cutoff: 3000, echo: false },
   // Lower, minor and heavier than remove, as it can't be taken back.
   delete: { notes: [Eb4, C4], step: 0.05, length: 0.25, gain: 0.2, sub: 0.6, cutoff: 2000, echo: false },
   // Three steps back down to C and a little darker, and the same steps forward.
@@ -108,8 +110,8 @@ const CUES: Record<Sound, Cue> = {
   receive: { notes: [G5, C5], step: 0.03, length: 0.12, gain: 0.15, sub: 0.1, cutoff: 6000, echo: false },
   // The full chord up to the octave, for finishing something that mattered.
   success: { notes: [C4, E4, G4, C5], step: 0.06, length: 0.6, gain: 0.18, sub: 0.6, cutoff: 6000, echo: true },
-  // Its mirror, falling back down through C minor.
-  failure: { notes: [C5, G4, Eb4, C4], step: 0.06, length: 0.6, gain: 0.18, sub: 0.6, cutoff: 3000, echo: true },
+  // Its mirror, falling through C minor an octave lower, so it sits below the positive sounds.
+  failure: { notes: [C4, G3, Eb3, C3], step: 0.06, length: 0.6, gain: 0.23, sub: 0.6, cutoff: 3000, echo: true },
   // Success carried on up to G5, with more weight and a longer ring.
   complete: { notes: [C4, E4, G4, C5, G5], step: 0.07, length: 0.8, gain: 0.16, sub: 0.8, cutoff: 6000, echo: true },
   // Two even hits on the minor third: a caution, not yet a failure.
@@ -118,8 +120,8 @@ const CUES: Record<Sound, Cue> = {
   error: { notes: [Db3, C3], step: 0.1, length: 0.3, gain: 0.35, sub: 1, cutoff: 900, echo: false },
   // An open fifth up.
   join: { notes: [C5, G5], step: 0.07, length: 0.5, gain: 0.27, sub: 0.6, cutoff: 6000, echo: true },
-  // The same fifth falling, an octave lower and a little darker.
-  leave: { notes: [G4, C4], step: 0.07, length: 0.5, gain: 0.27, sub: 0.6, cutoff: 3000, echo: true },
+  // The same fifth falling, two octaves lower and a little darker.
+  leave: { notes: [G3, C3], step: 0.07, length: 0.5, gain: 0.38, sub: 0.6, cutoff: 3000, echo: true },
   // A wide, unhurried leap up, spaced out to catch attention without alarm.
   notification: { notes: [G4, E5], step: 0.12, length: 0.4, gain: 0.2, sub: 0.4, cutoff: 6000, echo: true },
 };
