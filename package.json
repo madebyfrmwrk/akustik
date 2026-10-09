@@ -1,6 +1,6 @@
 {
   "name": "akustik",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Synthesized UI sound effects with themes. No audio files, no dependencies.",
   "license": "MIT",
   "repository": {

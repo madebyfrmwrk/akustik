@@ -122,8 +122,8 @@ const CUES: Record<Sound, Cue> = {
   join: { notes: [C5, G5], step: 0.07, length: 0.5, gain: 0.27, sub: 0.6, cutoff: 6000, echo: true },
   // The same fifth falling, two octaves lower and a little darker.
   leave: { notes: [G3, C3], step: 0.07, length: 0.5, gain: 0.38, sub: 0.6, cutoff: 3000, echo: true },
-  // A wide, unhurried leap up, spaced out to catch attention without alarm.
-  notification: { notes: [G4, E5], step: 0.12, length: 0.4, gain: 0.2, sub: 0.4, cutoff: 6000, echo: true },
+  // A wide, quick leap up, to catch attention without alarm.
+  notification: { notes: [G4, E5], step: 0.04, length: 0.4, gain: 0.26, sub: 0.4, cutoff: 6000, echo: true },
 };
 
 type Overtone = {
