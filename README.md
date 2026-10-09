@@ -12,6 +12,10 @@ import { play, setVolume } from "akustik";
 play("success");
 play("toggle-on", "wood");
 setVolume(0.5);
+
+// Rings repeat until stopped.
+const stop = play("ring-warm");
+stop(); // when the call is answered or declined
 ```
 
 ## Sounds
@@ -24,6 +28,7 @@ All sounds share one key (C) and one sub-bass layer, so they belong together. Ri
 | Actions | `copy`, `add` / `remove`, `delete`, `undo` / `redo`, `send` / `receive` |
 | Outcomes | `success` / `failure`, `complete`, `warning`, `error` |
 | Presence | `join` / `leave`, `notification` |
+| Rings | `ring-warm`, `ring-moody`, `ring-float`, `ring-cool` |
 
 Where two sounds look alike, pick by what happened:
 
@@ -32,6 +37,8 @@ Where two sounds look alike, pick by what happened:
 - `receive` is a message in the open conversation; `notification` asks for attention.
 - `success` means an action worked; `complete` means a whole task or flow is finished.
 - `failure` means the user's action didn't work; `error` means the system broke.
+
+The rings are for an incoming call. Each loops a four-bar phrase until stopped: `play` returns a function that stops the sound, fading it out rather than cutting it. One-shot sounds return one too, for cutting them short.
 
 There is deliberately no hover sound. It fires constantly and quickly becomes noise.
 
