@@ -43,10 +43,8 @@ export type Sound =
   | "join"
   | "leave"
   | "notification"
-  | "ring-warm"
   | "ring-moody"
-  | "ring-float"
-  | "ring-cool";
+  | "ring-float";
 export type Theme = "glass" | "string" | "wood";
 
 // MIDI note numbers.
@@ -150,14 +148,10 @@ type Ringtone = {
 };
 
 const RINGTONES: Record<Ring, Ringtone> = {
-  // C major 9, then F major 7.
-  "ring-warm": { figures: [[D5, B4, E4], [E5, C5, A4]], bass: [[C3, G3], [F3, C3]] },
   // C major 9, then A minor 9.
   "ring-moody": { figures: [[D5, B4, E4], [B4, G4, C4]], bass: [[C3, G3], [A2, E3]] },
   // C sus2, then F lydian.
   "ring-float": { figures: [[D5, G4, C5], [B4, E4, A4]], bass: [[C3, G3], [F3, C3]] },
-  // A minor 9, then F major 7.
-  "ring-cool": { figures: [[B4, E4, C5], [E5, A4, C5]], bass: [[A2, E3], [F3, C3]] },
 };
 
 const STEP = 1 / 6;
