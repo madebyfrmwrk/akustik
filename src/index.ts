@@ -52,10 +52,12 @@ const C2 = 36;
 const A2 = 45;
 const C3 = 48;
 const Db3 = 49;
+const D3 = 50;
 const Eb3 = 51;
 const E3 = 52;
 const F3 = 53;
 const G3 = 55;
+const A3 = 57;
 const C4 = 60;
 const Eb4 = 63;
 const E4 = 64;
@@ -129,9 +131,9 @@ const CUES: Record<Exclude<Sound, Ring>, Cue> = {
   // Two muffled hits falling a semitone.
   error: { notes: [Db3, C3], step: 0.1, length: 0.3, gain: 0.35, sub: 1, cutoff: 900, echo: false },
   // An open fifth up.
-  join: { notes: [C5, G5], step: 0.07, length: 0.5, gain: 0.27, sub: 0.6, cutoff: 6000, echo: true },
-  // The same fifth falling, two octaves lower and a little darker.
-  leave: { notes: [G3, C3], step: 0.07, length: 0.5, gain: 0.38, sub: 0.6, cutoff: 3000, echo: true },
+  join: { notes: [A4, E5], step: 0.07, length: 0.5, gain: 0.27, sub: 0.6, cutoff: 6000, echo: true },
+  // A fifth falling, an octave below join and a little darker.
+  leave: { notes: [A3, D3], step: 0.07, length: 0.5, gain: 0.35, sub: 0.6, cutoff: 3000, echo: true },
   // A wide, quick leap up, to catch attention without alarm.
   notification: { notes: [G4, E5], step: 0.04, length: 0.4, gain: 0.26, sub: 0.4, cutoff: 6000, echo: true },
 };
