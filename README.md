@@ -14,7 +14,7 @@ play("toggle-on", "wood");
 setVolume(0.5);
 
 // Rings repeat until stopped.
-const stop = play("ring-moody");
+const stop = play("ring");
 stop(); // when the call is answered or declined
 ```
 
@@ -28,7 +28,7 @@ All sounds share one key (C) and one sub-bass layer, so they belong together. Ri
 | Actions | `copy`, `add` / `remove`, `delete`, `undo` / `redo`, `send` / `receive` |
 | Outcomes | `success` / `failure`, `complete`, `warning`, `error` |
 | Presence | `join` / `leave`, `notification` |
-| Rings | `ring-moody`, `ring-float` |
+| Rings | `ring`, `ring-alt` |
 
 Where two sounds look alike, pick by what happened:
 

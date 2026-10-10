@@ -77,8 +77,8 @@
         "join",
         "leave",
         "notification",
-        "ring-moody",
-        "ring-float",
+        "ring",
+        "ring-alt",
       ];
       const themes = ["glass", "string", "wood"];
       const title = (name) => name[0].toUpperCase() + name.slice(1).replace("-", " ");
@@ -102,7 +102,7 @@
           button.dataset.sound = sound;
           button.dataset.theme = theme;
           button.addEventListener("click", () => {
-            if (!sound.startsWith("ring-")) return void play(sound, theme);
+            if (!sound.startsWith("ring")) return void play(sound, theme);
             const same = ringing?.button === button;
             stopRinging();
             if (same) return;

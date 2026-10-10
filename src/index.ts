@@ -11,7 +11,7 @@
  * - `success` means an action worked; `complete` means a whole task or flow is finished.
  * - `failure` means the user's action didn't work; `error` means the system broke.
  *
- * The `ring-*` sounds are for an incoming call, and repeat until stopped.
+ * `ring` and `ring-alt` are for an incoming call, and repeat until stopped.
  */
 export type Sound =
   | "tap"
@@ -43,8 +43,8 @@ export type Sound =
   | "join"
   | "leave"
   | "notification"
-  | "ring-moody"
-  | "ring-float";
+  | "ring"
+  | "ring-alt";
 export type Theme = "glass" | "string" | "wood";
 
 // MIDI note numbers.
@@ -81,7 +81,7 @@ type Cue = {
   echo: boolean;
 };
 
-type Ring = Extract<Sound, `ring-${string}`>;
+type Ring = Extract<Sound, "ring" | "ring-alt">;
 
 const CUES: Record<Exclude<Sound, Ring>, Cue> = {
   // Short and quiet, as it plays on every press.
@@ -149,9 +149,9 @@ type Ringtone = {
 
 const RINGTONES: Record<Ring, Ringtone> = {
   // C major 9, then A minor 9.
-  "ring-moody": { figures: [[D5, B4, E4], [B4, G4, C4]], bass: [[C3, G3], [A2, E3]] },
+  ring: { figures: [[D5, B4, E4], [B4, G4, C4]], bass: [[C3, G3], [A2, E3]] },
   // C sus2, then F lydian.
-  "ring-float": { figures: [[D5, G4, C5], [B4, E4, A4]], bass: [[C3, G3], [F3, C3]] },
+  "ring-alt": { figures: [[D5, G4, C5], [B4, E4, A4]], bass: [[C3, G3], [F3, C3]] },
 };
 
 const STEP = 1 / 6;
